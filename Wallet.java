@@ -1,11 +1,11 @@
 public class Wallet{
-    int balance = 1000;
+    int coins = 1000;
 
 
     public Wallet(){
         
     }
     public String toString() {
-        return "You have " + balance + " coins";
+        return "You have " + coins + " coins";
     }
 }
