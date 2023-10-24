@@ -2,8 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Die {
-    public static void main(String[] args) {
-        var scanner = new Scanner(System.in);
+
         Random rand = new Random();
         int die1 = 0;
         int die2 = 0;
@@ -22,6 +21,5 @@ public class Die {
         die1 = rand.nextInt(n) + 1;
         die2 = rand.nextInt(12 - n) + 1;
         System.out.println("Die 1: " + die1 + "\nDie 2: " + die2);
-        scanner.close();
+
     }
-}

@@ -16,7 +16,10 @@ class DiceGame {
         String p2name = scanner.nextLine();
         p2.setName(p2name);
         System.out.println("Welcome "+p1+" and "+p2+". Let the game begin!");
+        System.out.print("\nWrite a number between 1 and 11 to choose the dice: ");
         
-        
+
+
+        scanner.close();
     }
 }
