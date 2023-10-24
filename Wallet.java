@@ -11,9 +11,5 @@ public class Wallet{
         return "You have " + coins + " coins";
     }
 
-    public static void main(String[] args){
-        Wallet player1 = new Wallet();
-        System.out.println(player1);
-    
-    }
+
 }

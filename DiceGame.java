@@ -1,11 +1,21 @@
 import java.util.Scanner;
 
-class DiceGame {
+public class DiceGame {
     public static void main(String[] args) {
         var scanner = new Scanner(System.in);
+        
+        //Adding players with names.
+        Player p1 = new Player();
+        Player p2 = new Player();
 
+        
         System.out.println("Please Enter Player 1's Name");
-        String p1 = scanner.nextLine();
+        String p1name = scanner.nextLine();
+        p1.setName(p1name);
+        System.out.println("Please Enter Player 2's Name");
+        String p2name = scanner.nextLine();
+        p2.setName(p2name);
+        System.out.println("Welcome "+p1+" and "+p2+". Let the game begin!");
         
         
     }
