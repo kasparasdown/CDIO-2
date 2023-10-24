@@ -8,6 +8,7 @@ class DiceGame {
         Player p1 = new Player();
         Player p2 = new Player();
 
+
         
         System.out.println("Please Enter Player 1's Name");
         String p1name = scanner.nextLine();
@@ -15,7 +16,7 @@ class DiceGame {
         System.out.println("Please Enter Player 2's Name");
         String p2name = scanner.nextLine();
         p2.setName(p2name);
-        System.out.println("Welcome "+p1+" and "+p2+". Let the game begin!");
+        System.out.println("Welcome "+p1.getName()+" and "+p2.getName()+". Let the game begin!");
         System.out.print("\nWrite a number between 1 and 11 to choose the dice: ");
         
 
