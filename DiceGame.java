@@ -31,7 +31,24 @@ class DiceGame {
         }
         System.out.println("your die size is: "+dices.getDie());
 
+        //Choosing language
+        Language languageSelector = new Language();
 
+        // Call the setLanguage method to allow the user to choose a language.
+        languageSelector.setLanguage(scanner);
+
+        // Get the selected language and use it.
+        String selectedLanguage = languageSelector.getLanguage();
+
+        if (selectedLanguage.equals("d")) {
+            System.out.println("You selected Danish.");
+            // Perform actions in Danish language.
+        } else if (selectedLanguage.equals("e")) {
+            System.out.println("You selected English.");
+            // Perform actions in English language.
+        } else {
+            System.out.println("Invalid language selection.");
+        }
 
 
         
