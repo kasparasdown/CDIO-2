@@ -9,10 +9,10 @@ public class Player{
     public String getName() {
         return playerName;
     }
-    public void setCoins(int coin) {
+    public void setPCoins(int coin) {
         this.playerCoin = coin;
     }
-    public int getCoin() {
+    public int getPCoin() {
         return playerCoin;
     }
 
