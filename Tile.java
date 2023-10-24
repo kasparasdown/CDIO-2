@@ -28,7 +28,7 @@ public class Tile {
         System.out.println("Congrats you found the Mountain Huts, 60 coins is added to your wallet)");
         break;
         case 10:
-        System.out.println("Don`t go near the Werewall again, you lose 80 coins - roll again");
+        System.out.println("Don`t go near the Werewall, you lose 80 coins - roll again");
         break;
         case 11:
         System.out.println("Good luck getting out of this pit, you lose 50 coins");
