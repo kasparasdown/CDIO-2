@@ -37,7 +37,7 @@ public class Tile {
         System.out.println("Hey lucky luke you struck gold in the Goldmine,  650 coins is added to your wallet");
         break;
         default:
-        System.out.println("Roll again");
+        System.out.println("Try again please!");
         break;
     
     }
