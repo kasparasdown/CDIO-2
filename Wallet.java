@@ -1,15 +1,26 @@
-public class Wallet{
-    int coins = 1000;
+public class Wallet {
+    
+    int coinBalance = 1000;
 
+    public void walletSum(int initialBalance){
+        this.coinBalance = initialBalance;
+    }
 
-    public Wallet(){
-        if(coins < 0){
-            coins = 0;
+    public int getCoinBalance(){
+        return coinBalance;
+    }
+
+    public void addCoins(int amount){
+        coinBalance =+ amount;
+        if(amount > 0){
+           System.out.println(amount + " coins have been added to your wallet"); 
         }
-    }
-    public String toString() {
-        return "You have " + coins + " coins";
-    }
+        else if(amount < 0){
+           System.out.println(amount + " coins have been subtracted to your wallet"); 
+        }
+        else{
+            System.out.println("Invalid amount");
+        }
 
-
+    }
 }

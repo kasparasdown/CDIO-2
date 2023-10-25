@@ -9,7 +9,7 @@ class DiceGame {
         Player p2 = new Player();
         System.out.println("Please Enter Player 1's Name");
         String p1name = scanner.nextLine();
-        p1.setName(p1name);
+        p1.setName(p1name, p1.walletSum());
         System.out.println("Please Enter Player 2's Name");
         String p2name = scanner.nextLine();
         p2.setName(p2name);
@@ -48,7 +48,21 @@ class DiceGame {
             System.out.println("Invalid language selection.");
         }
 
-
+        //Players turn
+        boolean playerTurn = true; 
+        do{
+            if (playerTurn == false) {
+                System.out.println("It's your turn now " + p1.getName() + ". Roll the dice by typing 'roll':");
+                if ("roll".equalsIgnoreCase(scanner.next())) {
+                    int rollResult  = dices.dieRoll();
+                    p1.rollSwitch(rollResult);
+                    System.out.println("Your total score so far is: " + p1.getCoinsBalance());
+                    }
+                }
+                    else{
+                        System.out.println("It's your turn now " + p2.getName() + ". Roll the dice by typing 'roll");
+                    }
+        }
         
         scanner.close();
     }

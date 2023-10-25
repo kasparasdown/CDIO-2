@@ -15,9 +15,11 @@ public class Die {
     public int getDie() {
         return die;
     }
-
-      //  die1 = rand.nextInt(n) + 1;
-       // die2 = rand.nextInt(12 - n) + 1;
-       // System.out.println("Die 1: " + die1 + "\nDie 2: " + die2);
-
+    public int dieRoll(int die) {
+        die1 = rand.nextInt(die) + 1;
+        die2 = rand.nextInt(die) + 1;
+        System.out.println("Die 1: " + die1 + "\nDie 2: " + die2);
+        var dieResult = die1 + die2;
+        return dieResult;
+    }
 }
