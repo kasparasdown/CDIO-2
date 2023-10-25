@@ -2,8 +2,8 @@ public class Wallet {
     
     int coinBalance = 1000;
 
-    public void walletSum(int initialBalance){
-        this.coinBalance = initialBalance;
+    public Wallet(int coinBalance){
+        this.coinBalance = coinBalance;
     }
 
     public int getCoinBalance(){

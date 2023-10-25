@@ -1,19 +1,13 @@
 public class Player{
    
-    String playerName;
-    int playerCoin;
+    String name;
+    Wallet coin = new Wallet(1000);
 
-    public void setName(String name) {
-        this.playerName = name;
-    }   
+    public Player(String name, Wallet coin) {
+        this.name = name;
+        this.coin = coin;
+    }
     public String getName() {
-        return playerName;
+        return name;
     }
-    public void setPCoins(int coin) {
-        this.playerCoin = coin;
-    }
-    public int getPCoin() {
-        return playerCoin;
-    }
-
 }

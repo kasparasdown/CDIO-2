@@ -5,14 +5,16 @@ class DiceGame {
         var scanner = new Scanner(System.in);
 
         //Adding players with names
-        Player p1 = new Player();
-        Player p2 = new Player();
+        Wallet p1Wal = new Wallet(1000);
+        Wallet p2Wal = new Wallet(1000);
+        Player p1 = new Player("", p1Wal);
+        Player p2 = new Player("", p2Wal);
         System.out.println("Please Enter Player 1's Name");
         String p1name = scanner.nextLine();
-        p1.setName(p1name, p1.walletSum());
+        p1.name = p1name;
         System.out.println("Please Enter Player 2's Name");
         String p2name = scanner.nextLine();
-        p2.setName(p2name);
+        p2.name = p2name;
         System.out.println("Welcome "+p1.getName()+" and "+p2.getName()+". Let the game begin!");
         
         
@@ -55,7 +57,6 @@ class DiceGame {
                 System.out.println("It's your turn now " + p1.getName() + ". Roll the dice by typing 'roll':");
                 if ("roll".equalsIgnoreCase(scanner.next())) {
                     int rollResult  = dices.dieRoll();
-                    p1.rollSwitch(rollResult);
                     System.out.println("Your total score so far is: " + p1.getCoinsBalance());
                     }
                 }
