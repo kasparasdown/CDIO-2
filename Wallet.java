@@ -11,7 +11,7 @@ public class Wallet {
     }
 
     public void addCoins(int amount){
-        coinBalance =+ amount;
+        this.coinBalance =+ amount;
         if(amount > 0){
            System.out.println(amount + " coins have been added to your wallet"); 
         }

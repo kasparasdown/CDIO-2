@@ -16,10 +16,11 @@ public class Die {
         return dieSize;
     }
     public int dieRoll() {
-        die1 = rand.nextInt() + 1;
-        die2 = rand.nextInt() + 1;
+        die1 = rand.nextInt(this.dieSize) + 1;
+        die2 = rand.nextInt(this.dieSize) + 1;
         System.out.println("Die 1: " + die1 + "\nDie 2: " + die2);
         var dieResult = die1 + die2;
+        
         return dieResult;
     }
 }

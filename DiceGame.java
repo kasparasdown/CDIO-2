@@ -7,8 +7,8 @@ class DiceGame {
         //Adding players with names
         Wallet p1Wal = new Wallet(1000);
         Wallet p2Wal = new Wallet(1000);
-        Player p1 = new Player("", p1Wal);
-        Player p2 = new Player("", p2Wal);
+        Player p1 = new Player("", p1Wal, true);
+        Player p2 = new Player("", p2Wal, false);
         System.out.println("Please Enter Player 1's Name");
         String p1name = scanner.nextLine();
         p1.name = p1name;
@@ -52,17 +52,19 @@ class DiceGame {
 
         //Players turn
         boolean playerTurn = true; 
-            while (playerTurn == false) {
-                System.out.println("It's your turn now " + p1.getName() + ". Roll the dice by typing 'roll':");
-                if ("roll".equalsIgnoreCase(scanner.next())) {
+            while (playerTurn == true) {
+                System.out.println("It's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
+
+                if ("r".equalsIgnoreCase(scanner.nextLine())) {
                     int rollResult  = dices.dieRoll();
-                    
+                    p1Wal.addCoins(rollResult);
                     System.out.println("Your total score so far is: " + p1.getCoin());
-                    playerTurn = false;
                     }
+                else {
+                    System.out.println("Not valid command, please type r to roll.");
                 }
-                    playerTurn = false;
-                    System.out.println("It's your turn now " + p2.getName() + ". Roll the dice by typing 'roll");
+                }
+                    
 
         scanner.close();
     }
