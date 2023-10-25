@@ -19,12 +19,12 @@ class DiceGame {
         
         
         //Adding and choosing Die
-        Die dices = new Die();
+        Die dices = new Die(0);
         System.out.println("\nWrite a number between 1 and 11 to choose the dice: ");
         while (true){
             int dieInput = scanner.nextInt();
             if ((dieInput >= 2 && dieInput <= 11)){
-                dices.setDie(dieInput);
+                dices.dieSize = dieInput;
                 break;
             }
             System.out.println("Wrong input! Please enter a number between 1 and 11.");
@@ -52,19 +52,18 @@ class DiceGame {
 
         //Players turn
         boolean playerTurn = true; 
-        do{
-            if (playerTurn == false) {
+            while (playerTurn == false) {
                 System.out.println("It's your turn now " + p1.getName() + ". Roll the dice by typing 'roll':");
                 if ("roll".equalsIgnoreCase(scanner.next())) {
                     int rollResult  = dices.dieRoll();
-                    System.out.println("Your total score so far is: " + p1.getCoinsBalance());
+                    
+                    System.out.println("Your total score so far is: " + p1.getCoin());
+                    playerTurn = false;
                     }
                 }
-                    else{
-                        System.out.println("It's your turn now " + p2.getName() + ". Roll the dice by typing 'roll");
-                    }
-        }
-        
+                    playerTurn = false;
+                    System.out.println("It's your turn now " + p2.getName() + ". Roll the dice by typing 'roll");
+
         scanner.close();
     }
 }
