@@ -3,13 +3,10 @@ import java.util.Scanner;
 class DiceGame {
     public static void main(String[] args) {
         var scanner = new Scanner(System.in);
-        
-        Player p1 = new Player();
-        Player p2 = new Player();
-        Die dices = new Die();
-
 
         //Adding players with names
+        Player p1 = new Player();
+        Player p2 = new Player();
         System.out.println("Please Enter Player 1's Name");
         String p1name = scanner.nextLine();
         p1.setName(p1name);
@@ -19,7 +16,8 @@ class DiceGame {
         System.out.println("Welcome "+p1.getName()+" and "+p2.getName()+". Let the game begin!");
         
         
-        //Choosing Die Size
+        //Adding and choosing Die
+        Die dices = new Die();
         System.out.println("\nWrite a number between 1 and 11 to choose the dice: ");
         while (true){
             int dieInput = scanner.nextInt();
