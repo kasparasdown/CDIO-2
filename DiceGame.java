@@ -4,11 +4,11 @@ class DiceGame {
     public static void main(String[] args) {
         var scanner = new Scanner(System.in);
 
-        //Adding players with names
+        //Adding players with names with a wallet
         Wallet p1Wal = new Wallet(1000);
         Wallet p2Wal = new Wallet(1000);
-        Player p1 = new Player("", p1Wal, true);
-        Player p2 = new Player("", p2Wal, false);
+        Player p1 = new Player("", p1Wal);
+        Player p2 = new Player("", p2Wal);
         System.out.println("Please Enter Player 1's Name");
         String p1name = scanner.nextLine();
         p1.name = p1name;
@@ -51,20 +51,24 @@ class DiceGame {
         }
 
         //Players turn
-        boolean playerTurn = true; 
+        boolean playerTurn = true;
+        //Player 1 starts
+        p1.currentPlayer = true;
             while (playerTurn == true) {
-                System.out.println("It's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
-
-                if ("r".equalsIgnoreCase(scanner.nextLine())) {
-                    int rollResult  = dices.dieRoll();
-                    p1Wal.addCoins(rollResult);
-                    System.out.println("Your total score so far is: " + p1.getCoin());
+                if (p1.currentPlayer) {
+                    System.out.println("It's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
+                        if ("r".equalsIgnoreCase(scanner.nextLine())) {
+                                int rollResult  = dices.dieRoll();
+                                int tileValue = Tile.rollSwitch(rollResult);
+                                p1Wal.addCoins(tileValue);
+                                System.out.println("Your total score so far is: " + p1.getCoin());
+                                p1.currentPlayer = false;
+                        }
+                        else {
+                        System.out.println("Not valid command, please type r to roll.");
                     }
-                else {
-                    System.out.println("Not valid command, please type r to roll.");
                 }
-                }
-                    
+            }     
 
         scanner.close();
     }
