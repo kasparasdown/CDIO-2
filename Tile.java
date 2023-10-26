@@ -1,7 +1,6 @@
 public class Tile {
 
     public static int rollSwitch(int tile){
-    
     switch (tile) {
         case 2:
         System.out.println("You reached the Coin Tower, 250 coins is added to your wallet");
