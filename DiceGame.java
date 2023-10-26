@@ -56,7 +56,7 @@ class DiceGame {
         p1.currentPlayer = true;
             while (playerTurn == true) {
                 if (p1.currentPlayer) {
-                    System.out.println("It's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
+                    System.out.println("\nIt's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
                         if ("r".equalsIgnoreCase(scanner.nextLine())) {
                                 int rollResult  = dices.dieRoll();
                                 int tileValue = Tile.rollSwitch(rollResult);
@@ -68,8 +68,21 @@ class DiceGame {
                         System.out.println("Not valid command, please type r to roll.");
                     }
                 }
+                else {
+                    System.out.println("\nIt's your turn now " + p2.getName() + ". Roll the dice by typing 'r':");
+                        if ("r".equalsIgnoreCase(scanner.nextLine())) {
+                                int rollResult  = dices.dieRoll();
+                                int tileValue = Tile.rollSwitch(rollResult);
+                                p2Wal.addCoins(tileValue);
+                                System.out.println("Your total score so far is: " + p2.getCoin());
+                                p1.currentPlayer = true;
+                        }
+                        else {
+                        System.out.println("Not valid command, please type r to roll.");
+                    }
             }     
-
+        }
         scanner.close();
     }
 }
+
