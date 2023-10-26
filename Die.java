@@ -10,7 +10,7 @@ public class Die {
 
 
     public Die(int dieSize) {
-            this.dieSize = dieSize; 
+            this.dieSize = dieSize;
     }
     public int getDie() {
         return dieSize;

@@ -4,33 +4,6 @@ class DiceGame {
     public static void main(String[] args) {
         var scanner = new Scanner(System.in);
 
-        //Adding players with names with a wallet
-        Wallet p1Wal = new Wallet(1000);
-        Wallet p2Wal = new Wallet(1000);
-        Player p1 = new Player("", p1Wal);
-        Player p2 = new Player("", p2Wal);
-        System.out.println("Please Enter Player 1's Name");
-        String p1name = scanner.nextLine();
-        p1.name = p1name;
-        System.out.println("Please Enter Player 2's Name");
-        String p2name = scanner.nextLine();
-        p2.name = p2name;
-        System.out.println("Welcome "+p1.getName()+" and "+p2.getName()+". Let the game begin!");
-        
-        
-        //Adding and choosing Die
-        Die dices = new Die(0);
-        System.out.println("\nWrite a number between 1 and 11 to choose the dice: ");
-        while (true){
-            int dieInput = scanner.nextInt();
-            if ((dieInput >= 2 && dieInput <= 11)){
-                dices.dieSize = dieInput;
-                break;
-            }
-            System.out.println("Wrong input! Please enter a number between 1 and 11.");
-        }
-        System.out.println("your die size is: "+dices.getDie());
-
         //Choosing language
         Language languageSelector = new Language();
 
@@ -38,17 +11,73 @@ class DiceGame {
         languageSelector.setLanguage(scanner);
 
         // Get the selected language and use it.
-        String selectedLanguage = languageSelector.getLanguage();
+        String language = languageSelector.getLanguage();
 
-        if (selectedLanguage.equals("d")) {
+        if (language.equals("d")) {
             System.out.println("You selected Danish.");
             // Perform actions in Danish language.
-        } else if (selectedLanguage.equals("e")) {
+        } else if (language.equals("e")) {
             System.out.println("You selected English.");
             // Perform actions in English language.
         } else {
             System.out.println("Invalid language selection.");
         }
+
+        //Adding players with names with a wallet
+        Wallet p1Wal = new Wallet(1000);
+        Wallet p2Wal = new Wallet(1000);
+        Player p1 = new Player("", p1Wal);
+        Player p2 = new Player("", p2Wal);
+        if (language.equals("e")){
+            System.out.println("Please Enter Player 1's Name: ");
+        } else if (language.equals("d")){
+            System.out.println("Hvad hedder spiller 1: ");
+        }
+        
+        String p1name = scanner.nextLine();
+        p1.name = p1name;
+        if (language.equals("e")){
+            System.out.println("Please Enter Player 2's Name: ");
+        } else if (language.equals("d")){
+            System.out.println("Hvad hedder spiller 2: ");
+        }
+        String p2name = scanner.nextLine();
+        p2.name = p2name;
+        if (language.equals("e")){
+            System.out.println("Welcome "+p1.getName()+" and "+p2.getName()+". Let the game begin!");
+        } else if (language.equals("d")){
+            System.out.println("Velkommen "+p1.getName()+" og "+p2.getName()+". Lad spillet begynde!");
+        }
+        
+        
+        
+        //Adding and choosing Die
+        Die dices = new Die(0);
+        if (language.equals("e")){
+            System.out.println("\nWrite a number between 1 and 11 to choose the dice: ");
+        } else if (language.equals("d")){
+            System.out.println("\nSkriv et nummer fra 1 til 11 for at vælge, hvor mange sider terningerne skal have: ");
+        }
+        
+        while (true){
+            int dieInput = scanner.nextInt();
+            if ((dieInput >= 2 && dieInput <= 11)){
+                dices.dieSize = dieInput;
+                break;
+            }
+            if (language.equals("e")){
+                System.out.println("Wrong input! Please enter a number between 1 and 11.");
+            } else if (language.equals("d")){
+                System.out.println("Forkert tast! Vær sød at skrive et nummer mellem 1 og 11.");
+            }
+            
+        }
+        if (language.equals("e")){
+            System.out.println("your die size is: "+dices.getDie());
+        } else if (language.equals("d")){
+            System.out.println("terningernes sider er sat til: "+dices.getDie());
+        }
+        
 
         //Players turn
         boolean playerTurn = true;
@@ -56,7 +85,11 @@ class DiceGame {
         p1.currentPlayer = true;
             while (playerTurn == true) {
                 if (p1.currentPlayer) {
-                    System.out.println("\nIt's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
+                    if (language.equals("e")){
+                        System.out.println("\nIt's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
+                    } else if ( language.equals("d")){
+                        System.out.println("\nDet er " + p1.getName() + " tur. rul terningerne ved at trykke 'r':");
+                    }
                         if ("r".equalsIgnoreCase(scanner.nextLine())) {
                                 int rollResult  = dices.dieRoll();
                                 int tileValue = Tile.rollSwitch(rollResult);
