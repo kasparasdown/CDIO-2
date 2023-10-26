@@ -61,19 +61,24 @@ class DiceGame {
                                 int rollResult  = dices.dieRoll();
                                 int tileValue = Tile.rollSwitch(rollResult);
                                 p1Wal.addCoins(tileValue);
+                                if(rollResult != 10) {
                                 p1.currentPlayer = false;
+                                }
                         }
                         else {
                         System.out.println("Not valid command, please type r to roll.");
                     }
                 }
+                //Player 2's turn
                 else {
                     System.out.println("\nIt's your turn now " + p2.getName() + ". Roll the dice by typing 'r':");
                         if ("r".equalsIgnoreCase(scanner.nextLine())) {
                                 int rollResult  = dices.dieRoll();
                                 int tileValue = Tile.rollSwitch(rollResult);
                                 p2Wal.addCoins(tileValue);
+                                if(rollResult != 10) {
                                 p1.currentPlayer = true;
+                                }
                         }
                         else {
                         System.out.println("Not valid command, please type r to roll.");

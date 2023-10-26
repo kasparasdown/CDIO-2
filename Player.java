@@ -2,7 +2,7 @@ public class Player{
    
     String name;
     Wallet coin = new Wallet(1000);
-    boolean currentPlayer;    
+    public boolean currentPlayer;    
 
     public Player(String name, Wallet coin) {
         this.name = name;
