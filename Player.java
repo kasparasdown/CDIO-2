@@ -17,7 +17,7 @@ public class Player{
     boolean currentPlayer;
     public boolean isTurn() {
         if (currentPlayer){
-            return false;
+            return true;
         }
         else {
             return true;

@@ -11,18 +11,15 @@ public class Wallet{
 
     public void addCoins(int amount) {
         coinBalance += amount;
-        if (amount > 0 && amount >= coinBalance) {
+        if (amount < 0 && 0 > coinBalance) {
             coinBalance = 0;
             System.out.println("You`re broke.. Your balance is " + coinBalance);
         }
         else if (amount > 0) {
             System.out.println(amount + " coins added to the wallet. Your balance is " + coinBalance);
         }         
-        else if (amount > 0 && amount <= coinBalance) {
+        else if (amount < 0) {
             System.out.println(amount + " coins subtracted from the wallet. Your balance is " + coinBalance);
         }  
-        else {
-            System.out.println("Invalid amount.");
-        }
     }
 }

@@ -61,7 +61,6 @@ class DiceGame {
                                 int rollResult  = dices.dieRoll();
                                 int tileValue = Tile.rollSwitch(rollResult);
                                 p1Wal.addCoins(tileValue);
-                                System.out.println("Your total score so far is: " + p1.getCoin());
                                 p1.currentPlayer = false;
                         }
                         else {
@@ -74,7 +73,6 @@ class DiceGame {
                                 int rollResult  = dices.dieRoll();
                                 int tileValue = Tile.rollSwitch(rollResult);
                                 p2Wal.addCoins(tileValue);
-                                System.out.println("Your total score so far is: " + p2.getCoin());
                                 p1.currentPlayer = true;
                         }
                         else {
