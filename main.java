@@ -1,1 +1,3 @@
-//Goddag
+public class main {
+    
+}
