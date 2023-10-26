@@ -51,10 +51,10 @@ class DiceGame {
         }
 
         //Players turn
-        boolean playerTurn = true;
+        boolean runGame = true;
         //Player 1 starts
         p1.currentPlayer = true;
-            while (playerTurn == true) {
+            while (runGame) {
                 if (p1.currentPlayer) {
                     System.out.println("\nIt's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
                         if ("r".equalsIgnoreCase(scanner.nextLine())) {
@@ -83,7 +83,15 @@ class DiceGame {
                         else {
                         System.out.println("Not valid command, please type r to roll.");
                     }
-            }     
+            }
+            if (p1Wal.getCoinBalance() >= 3000) {
+                runGame = false;
+                System.out.println("Congrats "+p1.name+"!! You won the game!");
+            }
+            if (p2Wal.getCoinBalance() >= 3000) {
+                runGame = false;
+                System.out.println("Congrats "+p2.name+"!! You won the game!");
+            }
         }
         scanner.close();
     }
