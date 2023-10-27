@@ -60,7 +60,7 @@ class DiceGame {
         }
         
         while (true){
-            int dieInput = scanner.nextInt();
+            int dieInput = Integer.parseInt(scanner.nextLine());
             if ((dieInput >= 2 && dieInput <= 11)){
                 dices.dieSize = dieInput;
                 break;
