@@ -68,7 +68,7 @@ class DiceGame {
             if (language.equals("e")){
                 System.out.println("Wrong input! Please enter a number between 1 and 11.");
             } else if (language.equals("d")){
-                System.out.println("Forkert tast! Vær sød at skrive et nummer mellem 1 og 11.");
+                System.out.println("Forkert tast! Skriv et nummer mellem 1 og 11.");
             }
             
         }
