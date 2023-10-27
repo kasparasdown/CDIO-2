@@ -14,7 +14,7 @@ class DiceGame {
         String language = languageSelector.getLanguage();
 
         if (language.equals("d")) {
-            System.out.println("You selected Danish.");
+            System.out.println("Du har valgt dansk.");
             // Perform actions in Danish language.
         } else if (language.equals("e")) {
             System.out.println("You selected English.");
@@ -85,11 +85,15 @@ class DiceGame {
             Player currentPlayer = p1.currentPlayer ? p1 : p2;
         
             if (currentPlayer.currentPlayer) {
-                System.out.println("\nIt's your turn now " + currentPlayer.getName() + ". Roll the dice by typing 'r':");
+                if (language.equals("e")){
+                    System.out.println("\nIt's your turn now " + currentPlayer.getName() + ". Roll the dice by typing 'r': ");   
+                } else if (language.equals("d")){
+                    System.out.println("\n" + currentPlayer.getName() + ", det er din tur. Rul terningerne ved at trykke 'r': ");
+                }
                 if ("r".equalsIgnoreCase(scanner.nextLine())) {
                     int rollResult = dices.dieRoll();
-                    int tileValue = Tile.rollSwitch(rollResult);
-                    currentPlayer.addToWallet(tileValue);
+                    int tileValue = Tile.rollSwitch(rollResult, language);
+                    currentPlayer.addToWallet(tileValue, language);
         
                     if (rollResult != 10) {
                         currentPlayer.currentPlayer = false;
@@ -100,10 +104,13 @@ class DiceGame {
                         }
                     }
                 } else {
-                    System.out.println("Not valid command, please type 'r' to roll.");
+                    if (language.equals("e")){
+                        System.out.println("Not valid command, please type 'r' to roll.");
+                    } else if (language.equals("d")){
+                        System.out.println("Ugyldig komando, skriv 'r' for at rulle terningerne.");
+                    }
                 }
             }
-        }
         
             //Wincondition
             if (p1Wal.getCoinBalance() >= 3000) {
@@ -122,7 +129,7 @@ class DiceGame {
                     System.out.println("Tillykke " + p2.name + "!! Du har vundet spillet!");
                 }
             }
-        
+        }
         scanner.close();
     }
 }
