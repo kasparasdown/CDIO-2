@@ -77,57 +77,34 @@ class DiceGame {
             System.out.println("terningernes sider er sat til: "+dices.getDie());
         }
         
-
-        //Players turn
-        boolean runGame = true;
-        //Player 1 starts
+        // Player 1 starts
         p1.currentPlayer = true;
-            while (runGame) {
-                if (p1.currentPlayer) {
-                    if (language.equals("e")){
-                        System.out.println("\nIt's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
-                    } else if ( language.equals("d")){
-                        System.out.println("\n" + p1.getName() + " det er din tur nu. Rul terningerne ved at trykke 'r':");
-                    }
-                    
-                    if ("r".equalsIgnoreCase(scanner.nextLine())) {
-                        int rollResult  = dices.dieRoll();
-                        int tileValue = Tile.rollSwitch(rollResult);
-                        p1Wal.addCoins(tileValue);
-                        if(rollResult != 10) {
-                            p1.currentPlayer = false;
-                        }
-                    } else {
-                        if (language.equals("e")){
-                            System.out.println("Not valid command, please type 'r' to roll.");
-                        } else if (language.equals("d")){
-                            System.out.println("Ugyldig kommando, vær sød at rulle terningerne ved at trykke 'r'.");
-                        }
-                    }
-                }
-                //Player 2's turn
-                else {
-                    if (language.equals("e")){
-                        System.out.println("\nIt's your turn now " + p2.getName() + ". Roll the dice by typing 'r':");
-                    } else if (language.equals("d")){
-                        System.out.println("\n" + p2.getName() + " det er din tur nu. Rul terningerne ved at trykke 'r':");
-                    }
-
-                    if ("r".equalsIgnoreCase(scanner.nextLine())) {
-                        int rollResult  = dices.dieRoll();  //Rolling or chosen dices
-                        int tileValue = Tile.rollSwitch(rollResult); //Result from dice, pull Tile value
-                        p2Wal.addCoins(tileValue);  //Adding points to the player
-                        if(rollResult != 10) {
+        p2.currentPlayer = false;
+        boolean runGame = true;
+        while (runGame) {
+            Player currentPlayer = p1.currentPlayer ? p1 : p2;
+        
+            if (currentPlayer.currentPlayer) {
+                System.out.println("\nIt's your turn now " + currentPlayer.getName() + ". Roll the dice by typing 'r':");
+                if ("r".equalsIgnoreCase(scanner.nextLine())) {
+                    int rollResult = dices.dieRoll();
+                    int tileValue = Tile.rollSwitch(rollResult);
+                    currentPlayer.addToWallet(tileValue);
+        
+                    if (rollResult != 10) {
+                        currentPlayer.currentPlayer = false;
+                        if (currentPlayer == p1) {
+                            p2.currentPlayer = true;
+                        } else {
                             p1.currentPlayer = true;
                         }
-                    } else {
-                        if (language.equals("e")){
-                            System.out.println("Not valid command, please type 'r' to roll.");
-                        } else if (language.equals("d")){
-                            System.out.println("Ugyldig kommando, vær sød at rulle terningerne ved at trykke 'r'.");
-                        }
                     }
+                } else {
+                    System.out.println("Not valid command, please type 'r' to roll.");
+                }
             }
+        }
+        
             //Wincondition
             if (p1Wal.getCoinBalance() >= 3000) {
                 runGame = false;
@@ -145,7 +122,7 @@ class DiceGame {
                     System.out.println("Tillykke " + p2.name + "!! Du har vundet spillet!");
                 }
             }
-        }
+        
         scanner.close();
     }
 }
