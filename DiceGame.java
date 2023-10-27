@@ -80,10 +80,10 @@ class DiceGame {
         
 
         //Players turn
-        boolean playerTurn = true;
+        boolean runGame = true;
         //Player 1 starts
         p1.currentPlayer = true;
-            while (playerTurn == true) {
+            while (runGame) {
                 if (p1.currentPlayer) {
                     if (language.equals("e")){
                         System.out.println("\nIt's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
@@ -94,26 +94,38 @@ class DiceGame {
                                 int rollResult  = dices.dieRoll();
                                 int tileValue = Tile.rollSwitch(rollResult);
                                 p1Wal.addCoins(tileValue);
-                                System.out.println("Your total score so far is: " + p1.getCoin());
+                                if(rollResult != 10) {
                                 p1.currentPlayer = false;
+                                }
                         }
                         else {
                         System.out.println("Not valid command, please type r to roll.");
                     }
                 }
+                //Player 2's turn
                 else {
                     System.out.println("\nIt's your turn now " + p2.getName() + ". Roll the dice by typing 'r':");
                         if ("r".equalsIgnoreCase(scanner.nextLine())) {
-                                int rollResult  = dices.dieRoll();
-                                int tileValue = Tile.rollSwitch(rollResult);
-                                p2Wal.addCoins(tileValue);
-                                System.out.println("Your total score so far is: " + p2.getCoin());
+                                int rollResult  = dices.dieRoll();  //Rolling or chosen dices
+                                int tileValue = Tile.rollSwitch(rollResult); //Result from dice, pull Tile value
+                                p2Wal.addCoins(tileValue);  //Adding points to the player
+                                if(rollResult != 10) {
                                 p1.currentPlayer = true;
+                                }
                         }
                         else {
                         System.out.println("Not valid command, please type r to roll.");
                     }
-            }     
+            }
+            //Wincondition
+            if (p1Wal.getCoinBalance() >= 3000) {
+                runGame = false;
+                System.out.println("Congrats "+p1.name+"!! You won the game!");
+            }
+            if (p2Wal.getCoinBalance() >= 3000) {
+                runGame = false;
+                System.out.println("Congrats "+p2.name+"!! You won the game!");
+            }
         }
         scanner.close();
     }

@@ -1,7 +1,8 @@
 public class Player{
    
     String name;
-    Wallet coin = new Wallet(1000);    
+    Wallet coin = new Wallet(1000);
+    public boolean currentPlayer;    
 
     public Player(String name, Wallet coin) {
         this.name = name;
@@ -12,15 +13,5 @@ public class Player{
     }
     public int getCoin() {
         return coin.getCoinBalance();
-    }
-
-    boolean currentPlayer;
-    public boolean isTurn() {
-        if (currentPlayer){
-            return false;
-        }
-        else {
-            return true;
-        }
     }
 }
