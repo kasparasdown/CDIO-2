@@ -23,7 +23,7 @@ class DiceGame {
             System.out.println("Invalid language selection.");
         }
 
-        //Adding players with names with a wallet
+        //Adding players with names and a wallet
         Wallet p1Wal = new Wallet(1000);
         Wallet p2Wal = new Wallet(1000);
         Player p1 = new Player("", p1Wal);
@@ -60,7 +60,7 @@ class DiceGame {
         }
         
         while (true){
-            int dieInput = scanner.nextInt();
+            int dieInput = Integer.parseInt(scanner.nextLine());
             if ((dieInput >= 2 && dieInput <= 11)){
                 dices.dieSize = dieInput;
                 break;
@@ -78,55 +78,52 @@ class DiceGame {
             System.out.println("terningernes sider er sat til: "+dices.getDie());
         }
         
-
-        //Players turn
-        boolean runGame = true;
-        //Player 1 starts
+        // Player 1 starts
         p1.currentPlayer = true;
-            while (runGame) {
-                if (p1.currentPlayer) {
-                    if (language.equals("e")){
-                        System.out.println("\nIt's your turn now " + p1.getName() + ". Roll the dice by typing 'r':");
-                    } else if ( language.equals("d")){
-                        System.out.println("\nDet er " + p1.getName() + " tur. rul terningerne ved at trykke 'r':");
-                    }
-                        if ("r".equalsIgnoreCase(scanner.nextLine())) {
-                                int rollResult  = dices.dieRoll();
-                                int tileValue = Tile.rollSwitch(rollResult);
-                                p1Wal.addCoins(tileValue);
-                                if(rollResult != 10) {
-                                p1.currentPlayer = false;
-                                }
+        p2.currentPlayer = false;
+        boolean runGame = true;
+        while (runGame) {
+            Player currentPlayer = p1.currentPlayer ? p1 : p2;
+        
+            if (currentPlayer.currentPlayer) {
+                System.out.println("\nIt's your turn now " + currentPlayer.getName() + ". Roll the dice by typing 'r':");
+                if ("r".equalsIgnoreCase(scanner.nextLine())) {
+                    int rollResult = dices.dieRoll();
+                    int tileValue = Tile.rollSwitch(rollResult);
+                    currentPlayer.addToWallet(tileValue);
+        
+                    if (rollResult != 10) {
+                        currentPlayer.currentPlayer = false;
+                        if (currentPlayer == p1) {
+                            p2.currentPlayer = true;
+                        } else {
+                            p1.currentPlayer = true;
                         }
-                        else {
-                        System.out.println("Not valid command, please type r to roll.");
                     }
+                } else {
+                    System.out.println("Not valid command, please type 'r' to roll.");
                 }
-                //Player 2's turn
-                else {
-                    System.out.println("\nIt's your turn now " + p2.getName() + ". Roll the dice by typing 'r':");
-                        if ("r".equalsIgnoreCase(scanner.nextLine())) {
-                                int rollResult  = dices.dieRoll();  //Rolling or chosen dices
-                                int tileValue = Tile.rollSwitch(rollResult); //Result from dice, pull Tile value
-                                p2Wal.addCoins(tileValue);  //Adding points to the player
-                                if(rollResult != 10) {
-                                p1.currentPlayer = true;
-                                }
-                        }
-                        else {
-                        System.out.println("Not valid command, please type r to roll.");
-                    }
             }
+        }
+        
             //Wincondition
             if (p1Wal.getCoinBalance() >= 3000) {
                 runGame = false;
-                System.out.println("Congrats "+p1.name+"!! You won the game!");
+                if (language.equals("e")){
+                    System.out.println("Congrats "+p1.name+"!! You won the game!");
+                } else if (language.equals("d")){
+                    System.out.println("Tillykke " + p1.name + "!! Du har vundet spillet!");
+                }
             }
             if (p2Wal.getCoinBalance() >= 3000) {
                 runGame = false;
-                System.out.println("Congrats "+p2.name+"!! You won the game!");
+                if (language.equals("e")){
+                    System.out.println("Congrats "+p2.name+"!! You won the game!");
+                } else if (language.equals("d")){
+                    System.out.println("Tillykke " + p2.name + "!! Du har vundet spillet!");
+                }
             }
-        }
+        
         scanner.close();
     }
 }

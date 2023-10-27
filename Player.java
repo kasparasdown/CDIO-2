@@ -14,4 +14,9 @@ public class Player{
     public int getCoin() {
         return coin.getCoinBalance();
     }
+    public void addToWallet(int tileValue) {
+        if (currentPlayer) {
+            coin.addCoins(tileValue);
+        }
+    }
 }
