@@ -104,9 +104,7 @@ class DiceGame {
                     System.out.println("Not valid command, please type 'r' to roll.");
                 }
             }
-        }
-        
-            //Wincondition
+            //Wincon
             if (p1Wal.getCoinBalance() >= 3000) {
                 runGame = false;
                 if (language.equals("e")){
@@ -123,7 +121,7 @@ class DiceGame {
                     System.out.println("Tillykke " + p2.name + "!! Du har vundet spillet!");
                 }
             }
-        
+        }
         scanner.close();
     }
 }

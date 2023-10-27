@@ -17,6 +17,9 @@ public class Wallet{
         }
         else if (amount > 0) {
             System.out.println(amount + " coins added to the wallet. Your balance is " + coinBalance);
+        }
+        else if (amount == 0) {
+            System.out.println("Sadly, nothing has been added to your account. Your balance is " + coinBalance);
         }         
         else if (amount < 0) {
             System.out.println(amount + " coins subtracted from the wallet. Your balance is " + coinBalance);
