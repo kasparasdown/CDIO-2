@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-class DiceGame {
-    public static void main(String[] args) {
+public class DiceGame {
+    public static void runGame() {
         var scanner = new Scanner(System.in);
 
         //Choosing language
@@ -78,6 +78,8 @@ class DiceGame {
             System.out.println("terningernes sider er sat til: "+dices.getDie());
         }
         
+
+
         // Player 1 starts
         p1.currentPlayer = true;
         p2.currentPlayer = false;
@@ -124,5 +126,6 @@ class DiceGame {
         }
         scanner.close();
     }
+    
 }
 
